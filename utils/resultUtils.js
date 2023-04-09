@@ -1,9 +1,5 @@
 'use strict';
 
-//#region Defining Libraries
-const { ResultBase } = require("../classes/resultBase.js");
-//#endregion
-
 const logEverything = false;
 
 
@@ -15,7 +11,7 @@ const logEverything = false;
  * @param { Number? } i2
  * @return { Any } ResultBase[] || Object<Number, ResultBase[]>
  */
-function printMultiArray(allResults, printResult, numToProgress = -1, i2 = null) {
+function printMultiArray(ResultBase, allResults, printResult, numToProgress = -1, i2 = null) {
     let currentResults = allResults;
     //while (toString.call(currentResults) === "[object Array]") {
     if(toString.call(currentResults) === "[object Array]") {
@@ -45,9 +41,9 @@ function printMultiArray(allResults, printResult, numToProgress = -1, i2 = null)
                     console.log("\n\n")
                 }
                 if(numToProgress >= 0) {
-                    printResult = printMultiArray(result, printResult, numToProgress, i2);
+                    printResult = printMultiArray(ResultBase, result, printResult, numToProgress, i2);
                 } else {
-                    printResult = printMultiArray(result, printResult);
+                    printResult = printMultiArray(ResultBase, result, printResult);
                 }
                 if(!printResult) break;
             } else if (ResultBase.isResult(result)) {

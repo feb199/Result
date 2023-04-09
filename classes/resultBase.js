@@ -462,9 +462,9 @@ class ResultBase {
                 console.log("\n\n")
             }
             if(numToProgress >= 0) {
-                printResult = printMultiArray(printResults, printResult, numToProgress);
+                printResult = printMultiArray(ResultBase, printResults, printResult, numToProgress);
             } else {
-                printResult = printMultiArray(printResults, printResult);
+                printResult = printMultiArray(ResultBase, printResults, printResult);
             }
         } else {
             if(firstResult.belowCurrentLogLevel) printResult = firstResult.print();

@@ -269,7 +269,7 @@ class Results extends ResultBase {
                         console.log(printResults);
                         console.log("\n\n")
                     }
-                    printResult = printMultiArray(printResults, printResult);
+                    printResult = printMultiArray(ResultBase, printResults, printResult);
                 } else {
                     if(firstResult.belowCurrentLogLevel) {
                         printResult = firstResult.print();
