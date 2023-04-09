@@ -171,25 +171,27 @@ class ResultBase {
     static isResult(result) { return result instanceof ResultBase; }
 
     /**
-     * Gets child of this result, dosent check if(type <= currentLogLevel)
-     * @return { Result | Results }
+     * Gets child of `this`, dosent check if(type <= currentLogLevel)
+     * @return { ResultBase }
      */
     get child() { return this.#child; }
     /**
-     * @param { Result } result
-     * @param { Boolean } skipChildAssign
-     * @return { Result | Results }
+     * Sets child of `this` to `result`, dosent check if(type <= currentLogLevel)
+     * @param { ResultBase } result
+     * @param { Boolean } skipParentAssign
+     * @return { ResultBase }
      */
-    setChild(result, skipChildAssign = false) {
+    setChild(result, skipParentAssign = false) {
         if(!ResultBase.isResult(result)) {
             console.error(`set child: ${result} isent a Result class`);
             return false;
         }
         this.#child = result;
-        if(!skipChildAssign) result.setParent(this, true);
+        if(!skipParentAssign) result.setParent(this, true);
         return result;
     }
     /**
+     * Clears child of `this`, dosent check if(type <= currentLogLevel)
      * @param { Boolean } childAllreadyCleared
      * @return { Boolean }
      */
@@ -208,14 +210,15 @@ class ResultBase {
     }
 
     /**
-     * Gets parent of this result, dosent check if(type <= currentLogLevel)
-     * @return { Result | Results }
+     * Gets parent of `this`, dosent check if(type <= currentLogLevel)
+     * @return { ResultBase }
      */
     get parent() { return this.#parent; }
     /**
-     * @param { Result | Results } result
+     * Sets parent of `this` to `result`, dosent check if(type <= currentLogLevel)
+     * @param { ResultBase } result
      * @param { Boolean } skipChildAssign
-     * @return { Result | Results }
+     * @return { ResultBase }
      */
     setParent(result, skipChildAssign = false) {
         if(!ResultBase.isResult(result)) {
@@ -227,6 +230,7 @@ class ResultBase {
         return result;
     }
     /**
+     * Clears parent of `this`, dosent check if(type <= currentLogLevel)
      * @param { Boolean } parentAllreadyCleared
      * @return { Boolean }
      */
