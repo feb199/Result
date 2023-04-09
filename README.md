@@ -26,10 +26,12 @@ console.log("\n\n\n\nresult.printMore();");
 result.printMore();
 ```
 
-#Examples
+# Examples
 
 <details><summary>Example 1</summary>
+<p>
 ```js
+
 console.log("\n\n\n\n\nTest3+4");
 
 
@@ -46,10 +48,14 @@ result4.printMore();
 console.log("\n\n\n\nresult4.printMore(2);");
 result4.printMore(2);
 ```
+
+</p>
 </details>
 
 <details><summary>Example 2</summary>
+<p>
 ```js
+
 console.log("\n\n\n\n\nTest5+6+7+8");
 
 
@@ -65,11 +71,15 @@ result5.print();
 
 console.log("\n\n\n\nresult5.printMore();");
 result5.printMore();
+
 ```
+</p>
 </details>
 
 <details><summary>Example 3</summary>
+<p>
 ```js
+
 console.log("\n\n\n\n\nTest9+10+testFunct*3");
 
 
@@ -95,10 +105,13 @@ result9.print();
 console.log("\n\n\n\nresult9.printMore();");
 result9.printMore();
 ```
+</p>
 </details>
 
 <details><summary>Practical Example</summary>
+<p>
 ```js
+
 console.log("\n\n\n\n\nPractical Example:");
 
 var numOfDice = 2;
@@ -133,7 +146,9 @@ resultMain.printMore();
 ResultBase.currentLogLevel = logLevelsEnum.TRACE;
 console.log("\n\n\nResultBase.currentLogLevel = logLevelsEnum.TRACE;\nresultMain.printMore();");
 resultMain.printMore();
+
 ```
+</p>
 </details>
 
 # Documentation
