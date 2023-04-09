@@ -4,7 +4,7 @@ Used to store log results of functions/methods and also to executes actions depe
 Verified works on Windows.
 
 # Install
-#### `npm i @feb199/result --save`
+## `npm i @feb199/result --save`
 
 ## Setup
 ```js
