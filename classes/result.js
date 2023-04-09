@@ -3,7 +3,8 @@
 //#region Defining Libraries
 // const Enum = require("./enum.js");
 const EventEmitter = require("events");
-const { ResultBase, checkMultiResults, printMultiArray } = require("./resultBase.js");
+const { checkMultiResults, printMultiArray } = require("../utils/resultUtils.js");
+const ResultBase = require("./resultBase.js");
 const logLevelsEnum = ResultBase.logLevelsEnum;
 //#endregion
 
@@ -309,7 +310,6 @@ class Results extends ResultBase {
     }
 }
 
-module.exports = { Result, Results, ResultBase };
 
 
 // if(esMain(import.meta)) { // Checking if module is ran by itself (.mjs)
