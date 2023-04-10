@@ -1,6 +1,6 @@
 {
   "name": "@feb199/result",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Used to store log results of functions/methods and also to executes actions depending on result of functions/methods.",
   "main": "index.js",
   "scripts": {
@@ -22,11 +22,11 @@
     "import": "./esm/wrapper.js"
   },
   "author": {
-		"name": "Feb199",
+    "name": "Feb199",
     "alias": "DannySmoka",
-		"email": "feb199@wolfermus.com",
-		"url": "https://www.wolfermus.com"
-	},
+    "email": "feb199@wolfermus.com",
+    "url": "https://www.wolfermus.com"
+  },
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/feb199/Result/issues"
