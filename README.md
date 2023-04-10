@@ -149,16 +149,16 @@ resultMain.printMore();
 
 ## `.name, .type, .code, .action` Variable
 
-`.name` (Variable) Name of `this`
+`.name` (Variable) Name of `this`<br>
 Type `String`
 
-`.type` (Variable) Type of `this`
+`.type` (Variable) Type of `this`<br>
 Type `EnumItem`
 
-`.code` (Variable) Code of `this`
+`.code` (Variable) Code of `this`<br>
 Type `Number`
 
-`.action` (Variable) Action of `this`
+`.action` (Variable) Action of `this`<br>
 Type `Number`
 <br><br><br>
 
@@ -166,115 +166,115 @@ Type `Number`
 
 `(ResultBase)` = `ResultBase` or `Result` or `Results
 
-`(ResultBase).currentLogLevel` (Static Variable) currentLogLevel of `ResultBase`
+`(ResultBase).currentLogLevel` (Static Variable) currentLogLevel of `ResultBase`<br>
 Type `EnumItem`
 
-`(ResultBase).logLevelsEnum` (Static Variable) logLevelsEnum of `ResultBase`
+`(ResultBase).logLevelsEnum` (Static Variable) logLevelsEnum of `ResultBase`<br>
 Type `Enum`
 <br><br><br>
 
 ## `isResult()` Method
 
-Checks if provided result in an instance of ResultBase, dosent check if(type <= currentLogLevel)
-`isResult(result)` (Method)
-Param `result` = `ResultBase`
+Checks if provided result in an instance of ResultBase, dosent check if(type <= currentLogLevel)<br>
+`isResult(result)` (Method)<br>
+Param `result` = `ResultBase`<br>
 Returns `Boolean`
 <br><br><br>
 
 ## `.child, setChild(), clearChild()` (Getter, Method, Method)
 
-`.child` (Getter) Gets child of this result, dosent check if(type <= currentLogLevel)
+`.child` (Getter) Gets child of this result, dosent check if(type <= currentLogLevel)<br>
 Returns `ResultBase`
 
-`.setChild(result, skipParentAssign?)` (Method) Sets child of `this` to param `result`, dosent check if(type <= currentLogLevel)
-Param `result` = `ResultBase`
-Param `skipParentAssign` = `Boolean?`
+`.setChild(result, skipParentAssign?)` (Method) Sets child of `this` to param `result`, dosent check if(type <= currentLogLevel)<br>
+Param `result` = `ResultBase`<br>
+Param `skipParentAssign` = `Boolean?`<br>
 Returns `ResultBase`
 
-`.clearChild(childAllreadyCleared?)` (Method) Clears child of `this`, dosent check if(type <= currentLogLevel)
-Param `childAllreadyCleared` = `Boolean?`
+`.clearChild(childAllreadyCleared?)` (Method) Clears child of `this`, dosent check if(type <= currentLogLevel)<br>
+Param `childAllreadyCleared` = `Boolean?`<br>
 Returns `Boolean`
 <br><br><br>
 
 ## `.parent, setParent(), clearParent()` (Getter, Method, Method)
 
-`.parent` (Getter) Gets parent of this result, dosent check if(type <= currentLogLevel)
+`.parent` (Getter) Gets parent of this result, dosent check if(type <= currentLogLevel)<br>
 Returns `ResultBase`
 
-`.setParent(result, skipChildAssign?)` (Method) Sets parent of `this` to param `result`, dosent check if(type <= currentLogLevel)
-Param `result` = `ResultBase`
-Param `skipChildAssign` = `Boolean?`
+`.setParent(result, skipChildAssign?)` (Method) Sets parent of `this` to param `result`, dosent check if(type <= currentLogLevel)<br>
+Param `result` = `ResultBase`<br>
+Param `skipChildAssign` = `Boolean?`<br>
 Returns `ResultBase`
 
-`.clearParent(parentAllreadyCleared?)` (Method) Clears parent of `this`, dosent check if(type <= currentLogLevel)
-Param `parentAllreadyCleared` = `Boolean?`
+`.clearParent(parentAllreadyCleared?)` (Method) Clears parent of `this`, dosent check if(type <= currentLogLevel)<br>
+Param `parentAllreadyCleared` = `Boolean?`<br>
 Returns `Boolean`
 <br><br><br>
 
 ## `.firstParent, .lastChild` Getter
 
-Gets first parent of this result's whole chain, dosent check if(type <= currentLogLevel)
-`.firstParent` (Getter)
+Gets first parent of this result's whole chain, dosent check if(type <= currentLogLevel)<br>
+`.firstParent` (Getter)<br>
 Returns `ResultBase`
 
-Gets last child of this result's whole chain, dosent check if(type <= currentLogLevel)
-`.lastChild` (Getter)
+Gets last child of this result's whole chain, dosent check if(type <= currentLogLevel)<br>
+`.lastChild` (Getter)<br>
 Returns `ResultBase`
 <br><br><br>
 
 ## `.getAll()` Method
 
-Gets a custom amount of results(type <= currentLogLevel)
-`.getAll(mode?, toIndex?, collapseMultiResults?, flattenMultiResults?)` (Method)
-Param `mode` = `Number?` - `0` = Get all from first parent to last child, `1` = Progress from last child to first parent.
-Param `toIndex` = `Number?`
-Param `collapseMultiResults` = `Boolean?`
-Param `flattenMultiResults` = `Boolean?`
+Gets a custom amount of results(type <= currentLogLevel)<br>
+`.getAll(mode?, toIndex?, collapseMultiResults?, flattenMultiResults?)` (Method)<br>
+Param `mode` = `Number?` - `0` = Get all from first parent to last child, `1` = Progress from last child to first parent.<br>
+Param `toIndex` = `Number?`<br>
+Param `collapseMultiResults` = `Boolean?`<br>
+Param `flattenMultiResults` = `Boolean?`<br>
 Returns `ResultBase`
 <br><br><br>
 
 ## `.print(), .printMore()` Method
 
-Prints this properties, dosent check if(type <= currentLogLevel)
-`.print(onlyName?)` (Method)
-Param `onlyName` = `String?`
+Prints this properties, dosent check if(type <= currentLogLevel)<br>
+`.print(onlyName?)` (Method)<br>
+Param `onlyName` = `String?`<br>
 Returns `Boolean`
 
-Print all results(type <= currentLogLevel)
-`.printMore(mode?, numToProgress?, collapseMultiResults?)` (Method)
-Param `mode` = `Number?` - `0` = Progress from current to last child, `1` = Progress from current to first parent, `2` = Progress from first parent to last child, `3` = Progress from last child to first parent.
-Param `numToProgress` = `Number?`
-Param `collapseMultiResults` = `Boolean?`
+Print all results(type <= currentLogLevel)<br>
+`.printMore(mode?, numToProgress?, collapseMultiResults?)` (Method)<br>
+Param `mode` = `Number?` - `0` = Progress from current to last child, `1` = Progress from current to first parent, `2` = Progress from first parent to last child, `3` = Progress from last child to first parent.<br>
+Param `numToProgress` = `Number?`<br>
+Param `collapseMultiResults` = `Boolean?`<br>
 Returns `Boolean`
 <br><br><br>
 
 ## `.belowCurrentLogLevel()` Method
 
-Checks whether or not (this.type is <= ResultBase.currentLogLevel)
-`.belowCurrentLogLevel()` (Method)
+Checks whether or not (this.type is <= ResultBase.currentLogLevel)<br>
+`.belowCurrentLogLevel()` (Method)<br>
 Returns `Boolean`
 <br><br><br>
 
 ## `.localEventHandler, .globalEventHandler` ((Setter, Getter), (Setter, Getter))
 
 Get the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
-`.localEventHandler()` (Getter)
+`.localEventHandler()` (Getter)<br>
 Returns `EventEmitter?`
 
 Set the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
-`.localEventHandler(EventHandler)` (Setter)
-Param `EventHandler` = `EventEmitter`
+`.localEventHandler(EventHandler)` (Setter)<br>
+Param `EventHandler` = `EventEmitter`<br>
 Returns `Boolean`
 
 <br>
 
-Get the eventEmmitter that handles events. (Emits: print(String), clear()).
-`.globalEventHandler()` (Getter)
+Get the eventEmmitter that handles events. (Emits: print(String), clear()).<br>
+`.globalEventHandler()` (Getter)<br>
 Returns `EventEmitter?`
 
-Set the eventEmmitter that handles events. (Emits: print(String), clear()).
-`.globalEventHandler(EventHandler)` (Setter)
-Param `EventHandler` = `EventEmitter`
+Set the eventEmmitter that handles events. (Emits: print(String), clear()).<br>
+`.globalEventHandler(EventHandler)` (Setter)<br>
+Param `EventHandler` = `EventEmitter`<br>
 Returns `Boolean`
 </details>
 
