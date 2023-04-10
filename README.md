@@ -145,7 +145,7 @@ resultMain.printMore();
 
 # Documentation
 
-<details><summary>ResultBase</summary>
+<details><summary>Class ResultBase</summary>
 
 ## `.name, .type, .code, .action` Variable
 
@@ -294,9 +294,9 @@ Param `EventHandler` = `EventEmitter`<br>
 Returns `Boolean`
 </details>
 
-<details><summary>Result extends ResultBase</summary>
+<details><summary>Class Result extends ResultBase</summary>
 
-Everything `ResultBase` Class has `Result` Also has.
+<br>(Everything `ResultBase` Class has `Result` Also has.)
 
 ## `.message, .value` Variable
 
@@ -309,9 +309,9 @@ Value of `this`<br>
 Type `Any?`
 </details>
 
-<details><summary>Results extends ResultBase</summary>
+<details><summary>Class Results extends ResultBase</summary>
 
-Everything `ResultBase` Class has `Results` Also has.
+<br>(Everything `ResultBase` Class has `Results` Also has.)
 
 ## `.results` Getter
 
