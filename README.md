@@ -271,12 +271,12 @@ Returns `Boolean`
 
 Get the eventEmmitter that handles events.<br>
 (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
-`.localEventHandler()` (Getter)<br>
+`.localEventHandler` (Getter)<br>
 Returns `EventEmitter?`
 
 Set the eventEmmitter that handles events.<br>
 (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
-`.localEventHandler(EventHandler)` (Setter)<br>
+`.localEventHandler = EventHandler` (Setter)<br>
 Param `EventHandler` = `EventEmitter`<br>
 Returns `Boolean`
 
@@ -284,15 +284,38 @@ Returns `Boolean`
 
 Get the eventEmmitter that handles events.<br>
 (Emits: print(String), clear()).<br>
-`.globalEventHandler()` (Getter)<br>
+`.globalEventHandler` (Getter)<br>
 Returns `EventEmitter?`
 
 Set the eventEmmitter that handles events.<br>
 (Emits: print(String), clear()).<br>
-`.globalEventHandler(EventHandler)` (Setter)<br>
+`.globalEventHandler = EventHandler` (Setter)<br>
 Param `EventHandler` = `EventEmitter`<br>
 Returns `Boolean`
 </details>
 
+<details><summary>Result extends ResultBase</summary>
 
-#### WIP
+Everything `ResultBase` Class has `Result` Also has.
+
+## `.message, .value` Variable
+
+Message of `this`<br>
+`.message` (Variable)<br>
+Type `String`
+
+Value of `this`<br>
+`.value` (Variable)<br>
+Type `Any?`
+</details>
+
+<details><summary>Results extends ResultBase</summary>
+
+Everything `ResultBase` Class has `Results` Also has.
+
+## `.results` Getter
+
+Gets the events of `this`.<br>
+`.results` (Getter)<br>
+Returns `ResultBase[]`
+</details>
