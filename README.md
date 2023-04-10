@@ -149,16 +149,20 @@ resultMain.printMore();
 
 ## `.name, .type, .code, .action` Variable
 
-`.name` (Variable) Name of `this`<br>
+Name of `this`<br>
+`.name` (Variable)<br>
 Type `String`
 
-`.type` (Variable) Type of `this`<br>
+Type of `this`<br>
+`.type` (Variable)<br>
 Type `EnumItem`
 
-`.code` (Variable) Code of `this`<br>
+Code of `this`<br>
+`.code` (Variable)<br>
 Type `Number`
 
-`.action` (Variable) Action of `this`<br>
+Action of `this`<br>
+`.action` (Variable)<br>
 Type `Number`
 <br><br><br>
 
@@ -166,10 +170,12 @@ Type `Number`
 
 `(ResultBase)` = `ResultBase` or `Result` or `Results
 
-`(ResultBase).currentLogLevel` (Static Variable) currentLogLevel of `ResultBase`<br>
+(Static Variable) currentLogLevel of `ResultBase`<br>
+`(ResultBase).currentLogLevel`<br>
 Type `EnumItem`
 
-`(ResultBase).logLevelsEnum` (Static Variable) logLevelsEnum of `ResultBase`<br>
+(Static Variable) logLevelsEnum of `ResultBase`<br>
+`(ResultBase).logLevelsEnum`<br>
 Type `Enum`
 <br><br><br>
 
@@ -183,30 +189,36 @@ Returns `Boolean`
 
 ## `.child, setChild(), clearChild()` (Getter, Method, Method)
 
-`.child` (Getter) Gets child of this result, dosent check if(type <= currentLogLevel)<br>
+Gets child of this result, dosent check if(type <= currentLogLevel)<br>
+`.child` (Getter)<br>
 Returns `ResultBase`
 
-`.setChild(result, skipParentAssign?)` (Method) Sets child of `this` to param `result`, dosent check if(type <= currentLogLevel)<br>
+Sets child of `this` to param `result`, dosent check if(type <= currentLogLevel)<br>
+`.setChild(result, skipParentAssign?)` (Method)<br>
 Param `result` = `ResultBase`<br>
 Param `skipParentAssign` = `Boolean?`<br>
 Returns `ResultBase`
 
-`.clearChild(childAllreadyCleared?)` (Method) Clears child of `this`, dosent check if(type <= currentLogLevel)<br>
+Clears child of `this`, dosent check if(type <= currentLogLevel)<br>
+`.clearChild(childAllreadyCleared?)` (Method)<br>
 Param `childAllreadyCleared` = `Boolean?`<br>
 Returns `Boolean`
 <br><br><br>
 
 ## `.parent, setParent(), clearParent()` (Getter, Method, Method)
 
-`.parent` (Getter) Gets parent of this result, dosent check if(type <= currentLogLevel)<br>
+Gets parent of this result, dosent check if(type <= currentLogLevel)<br>
+`.parent` (Getter)<br>
 Returns `ResultBase`
 
-`.setParent(result, skipChildAssign?)` (Method) Sets parent of `this` to param `result`, dosent check if(type <= currentLogLevel)<br>
+Sets parent of `this` to param `result`, dosent check if(type <= currentLogLevel)<br>
+`.setParent(result, skipChildAssign?)` (Method)<br>
 Param `result` = `ResultBase`<br>
 Param `skipChildAssign` = `Boolean?`<br>
 Returns `ResultBase`
 
-`.clearParent(parentAllreadyCleared?)` (Method) Clears parent of `this`, dosent check if(type <= currentLogLevel)<br>
+Clears parent of `this`, dosent check if(type <= currentLogLevel)<br>
+`.clearParent(parentAllreadyCleared?)` (Method)<br>
 Param `parentAllreadyCleared` = `Boolean?`<br>
 Returns `Boolean`
 <br><br><br>
@@ -257,22 +269,26 @@ Returns `Boolean`
 
 ## `.localEventHandler, .globalEventHandler` ((Setter, Getter), (Setter, Getter))
 
-Get the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
+Get the eventEmmitter that handles events.<br>
+(Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
 `.localEventHandler()` (Getter)<br>
 Returns `EventEmitter?`
 
-Set the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
+Set the eventEmmitter that handles events.<br>
+(Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
 `.localEventHandler(EventHandler)` (Setter)<br>
 Param `EventHandler` = `EventEmitter`<br>
 Returns `Boolean`
 
 <br>
 
-Get the eventEmmitter that handles events. (Emits: print(String), clear()).<br>
+Get the eventEmmitter that handles events.<br>
+(Emits: print(String), clear()).<br>
 `.globalEventHandler()` (Getter)<br>
 Returns `EventEmitter?`
 
-Set the eventEmmitter that handles events. (Emits: print(String), clear()).<br>
+Set the eventEmmitter that handles events.<br>
+(Emits: print(String), clear()).<br>
 `.globalEventHandler(EventHandler)` (Setter)<br>
 Param `EventHandler` = `EventEmitter`<br>
 Returns `Boolean`
