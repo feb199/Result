@@ -160,7 +160,7 @@ Type `Number`
 
 `.action` (Variable) Action of `this`
 Type `Number`
-<br>
+<br><br>
 
 ## `.currentLogLevel, .logLevelsEnum` Static Variable
 
@@ -171,7 +171,7 @@ Type `EnumItem`
 
 `(ResultBase).logLevelsEnum` (Static Variable) logLevelsEnum of `ResultBase`
 Type `Enum`
-<br>
+<br><br>
 
 ## `isResult()` Method
 
@@ -179,7 +179,7 @@ Checks if provided result in an instance of ResultBase, dosent check if(type <= 
 `isResult(result)` (Method)
 Param `result` = `ResultBase`
 Returns `Boolean`
-<br>
+<br><br>
 
 ## `.child, setChild(), clearChild()` (Getter, Method, Method)
 
@@ -194,7 +194,7 @@ Returns `ResultBase`
 `.clearChild(childAllreadyCleared?)` (Method) Clears child of `this`, dosent check if(type <= currentLogLevel)
 Param `childAllreadyCleared` = `Boolean?`
 Returns `Boolean`
-<br>
+<br><br>
 
 ## `.parent, setParent(), clearParent()` (Getter, Method, Method)
 
@@ -209,7 +209,7 @@ Returns `ResultBase`
 `.clearParent(parentAllreadyCleared?)` (Method) Clears parent of `this`, dosent check if(type <= currentLogLevel)
 Param `parentAllreadyCleared` = `Boolean?`
 Returns `Boolean`
-<br>
+<br><br>
 
 ## `.firstParent, .lastChild` Getter
 
@@ -220,7 +220,7 @@ Returns `ResultBase`
 Gets last child of this result's whole chain, dosent check if(type <= currentLogLevel)
 `.lastChild` (Getter)
 Returns `ResultBase`
-<br>
+<br><br>
 
 ## `.getAll()` Method
 
@@ -231,7 +231,7 @@ Param `toIndex` = `Number?`
 Param `collapseMultiResults` = `Boolean?`
 Param `flattenMultiResults` = `Boolean?`
 Returns `ResultBase`
-<br>
+<br><br>
 
 ## `.print(), .printMore()` Method
 
@@ -246,14 +246,14 @@ Param `mode` = `Number?` - `0` = Progress from current to last child, `1` = Prog
 Param `numToProgress` = `Number?`
 Param `collapseMultiResults` = `Boolean?`
 Returns `Boolean`
-<br>
+<br><br>
 
 ## `.belowCurrentLogLevel()` Method
 
 Checks whether or not (this.type is <= ResultBase.currentLogLevel)
 `.belowCurrentLogLevel()` (Method)
 Returns `Boolean`
-<br>
+<br><br>
 
 ## `.localEventHandler, .globalEventHandler` ((Setter, Getter), (Setter, Getter))
 
