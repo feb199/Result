@@ -267,7 +267,7 @@ Checks whether or not (this.type is <= ResultBase.currentLogLevel)<br>
 Returns `Boolean`
 <br><br><br>
 
-## `.localEventHandler, .globalEventHandler` ((Setter, Getter), (Setter, Getter))
+## `.localEventHandler, .globalEventHandler` ((Getter, Setter), (Getter, Setter))
 
 Get the eventEmmitter that handles events.<br>
 (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
