@@ -8,13 +8,6 @@ const ResultBase = require("./resultBase.js");
 const logLevelsEnum = ResultBase.logLevelsEnum;
 //#endregion
 
-
-function sleep(ms) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, ms);
-    });
-}
-
 const logEverything = false;
 
 
@@ -107,7 +100,7 @@ class Result extends ResultBase {
  * @property { String } name - The name of the Results.
  * @property { Number } code - The HTTP Status Code.
  * @property { Number } action - The action to take.
- * @property { Array<ResultBase> } results - An array of Result.
+ * @property { ResultBase[] } results - An array of Result.
  * 
  * @property { EventEmitter? } localEventHandler - The event to emit calls for "print". (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
  *
@@ -124,8 +117,8 @@ class Result extends ResultBase {
  */
 class Results extends ResultBase {
     /** 
-    * results - The HTTP Status Code.
-    * @type { Array<ResultBase> }
+    * results - An array of Result.
+    * @type { ResultBase[] }
     */
     #results;
 
@@ -186,9 +179,13 @@ class Results extends ResultBase {
      */
     static set globalEventHandler(EventHandler) { return ResultBase.globalEventHandler = EventHandler; }
 
+    /**
+     * results - Gets the events of `this`.
+     * @return { ResultBase[] }
+     */
     get results() { return this.#results; }
 
-    async print(skipResults = false) {
+    print(skipResults = false) {
         super.print(true);
 
         let printString = "";
@@ -229,7 +226,6 @@ class Results extends ResultBase {
                             console.log(`result.js 2 (tempArray.length > 0)`)
                             console.log(tempArray);
                             console.log("\n\n")
-                            await sleep(10000);
                         }
                         allResults.push(...tempArray);
                     } else {
