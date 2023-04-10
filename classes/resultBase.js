@@ -22,15 +22,15 @@ const logEverything = false;
  * @static
  * 
  * @property { String } name - The name of the Result.
- * @property { EnumValue } type - The type of the Result.
+ * @property { EnumItem } type - The type of the Result.
  * @property { Number } code - The HTTP Status Code.
  * @property { Number } action - The action to take.
  * 
  * @property { EventEmitter? } globalEventHandler - The event to emit calls for "print". (Emits: print(String), error(String), clear()).
  * @property { EventEmitter? } localEventHandler - The event to emit calls for "print". (Emits: print(String), error(String), clear()), localEventHandler overrides static globalEventHandler.
  * 
- * @property { Result|Results } parent - The parent of the Result.
- * @property { Result|Results } child - The child of the Result.
+ * @property { ResultBase } parent - The parent of the Result.
+ * @property { ResultBase } child - The child of the Result.
  */
 class ResultBase {
     /** 
@@ -40,7 +40,7 @@ class ResultBase {
     name;
     /** 
     * type - The type of the Result.
-    * @type { EnumValue }
+    * @type { EnumItem }
     */
     type;
     /** 
@@ -122,12 +122,12 @@ class ResultBase {
     }
 
     /**
-     * localEventHandler - The event to emit calls for "print". (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
+     * localEventHandler - Get the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
      * @return { EventEmitter? }
      */
     get localEventHandler() { return this.#localEventHandler; }
     /**
-     * localEventHandler - The event to emit calls for "print". (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
+     * localEventHandler - Set the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
      * @param { Result } EventHandler
      * @return { Boolean }
      */
@@ -143,12 +143,12 @@ class ResultBase {
     }
 
     /**
-     * globalEventHandler - The event to emit calls for "print". (Emits: print(String), clear()).
+     * globalEventHandler - Get the eventEmmitter that handles events. (Emits: print(String), clear()).
      * @return { EventEmitter? }
      */
     static get globalEventHandler() { return ResultBase.#globalEventHandler; }
     /**
-     * globalEventHandler - The event to emit calls for "print". (Emits: print(String), clear()).
+     * globalEventHandler - Set the eventEmmitter that handles events. (Emits: print(String), clear()).
      * @param { Result } EventHandler
      * @return { Boolean }
      */
@@ -250,8 +250,7 @@ class ResultBase {
 
     /**
      * Gets first parent of this result's whole chain, dosent check if(type <= currentLogLevel)
-     * @param { Result | Results } result
-     * @return { Result | Results }
+     * @return { ResultBase }
      */
     get firstParent() {
         let foundParent = this;
@@ -264,8 +263,7 @@ class ResultBase {
     }
     /**
      * Gets last child of this result's whole chain, dosent check if(type <= currentLogLevel)
-     * @param { Result | Results } result
-     * @return { Result | Results }
+     * @return { ResultBase }
      */
     get lastChild() {
         let foundChild = this;
@@ -283,7 +281,7 @@ class ResultBase {
      * @param { Number? } toIndex
      * @param { Boolean? } collapseMultiResults
      * @param { Boolean? } flattenMultiResults
-     * @return { (Result | Results)[] }
+     * @return { ResultBase[] }
      */
     getAll(mode = 0, toIndex = -1, collapseMultiResults = false, flattenMultiResults = false) {
         // 0 = Get all from first parent to last child
@@ -343,7 +341,7 @@ class ResultBase {
     }
 
     /**
-     * Prints this properties if(type <= currentLogLevel)
+     * Prints this properties, dosent check if(type <= currentLogLevel)
      * @param { Boolean? } onlyName
      * @return { Boolean }
      */
