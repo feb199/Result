@@ -257,11 +257,11 @@ Returns `Boolean`
 
 ## `.localEventHandler, .globalEventHandler` ((Setter, Getter), (Setter, Getter))
 
-Get the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
+Get the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
 `.localEventHandler()` (Getter)
 Returns `EventEmitter?`
 
-Set the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
+Set the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.<br>
 `.localEventHandler(EventHandler)` (Setter)
 Param `EventHandler` = `EventEmitter`
 Returns `Boolean`
