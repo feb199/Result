@@ -53,7 +53,7 @@ class Result extends ResultBase {
      * @param { String } message - The name of the Result.
      * @param { any? } value - The passed through value of the Result.
      */
-    constructor (name, type, code, action, message, value) {
+    constructor (name, type, code, action, message, value = undefined) {
         super(name, type, code, action);
 
         // @ts-ignore
@@ -74,8 +74,8 @@ class Result extends ResultBase {
      * @param { EventEmitter? } EventHandler
      * @return { Boolean }
      */
-    static set globalEventHandler(EventHandler) { return ResultBase.globalEventHandler = EventHandler; }
     // @ts-ignore
+    static set globalEventHandler(EventHandler) { ResultBase.globalEventHandler = EventHandler; }
 
     print() {
         super.print(true);
@@ -184,7 +184,7 @@ class Results extends ResultBase {
      * @param { EventEmitter } EventHandler
      * @return { Boolean }
      */
-    static set globalEventHandler(EventHandler) { return ResultBase.globalEventHandler = EventHandler; }
+    static set globalEventHandler(EventHandler) { ResultBase.globalEventHandler = EventHandler; }
 
     /**
      * results - Gets the events of `this`.

@@ -136,13 +136,8 @@ class ResultBase {
      */
     set localEventHandler(EventHandler) {
         let isEventHandlerValid = (EventHandler instanceof EventEmitter);
-        if(isEventHandlerValid) {
-            this.#localEventHandler = EventHandler;
-            return true;
-        } else {
-            this.#localEventHandler = null;
-            return false;
-        }
+        if(isEventHandlerValid) { this.#localEventHandler = EventHandler;
+        } else this.#localEventHandler = null;
     }
 
     /**
@@ -158,13 +153,8 @@ class ResultBase {
      */
     static set globalEventHandler(EventHandler) {
         let isEventHandlerValid = (EventHandler instanceof EventEmitter);
-        if(isEventHandlerValid) {
-            ResultBase.#globalEventHandler = EventHandler;
-            return true;
-        } else {
-            ResultBase.#globalEventHandler = null;
-            return false;
-        }
+        if(isEventHandlerValid) { ResultBase.#globalEventHandler = EventHandler;
+        } else ResultBase.#globalEventHandler = null;
     }
 
     /**
@@ -186,10 +176,8 @@ class ResultBase {
      * @return { ResultBase? }
      */
     setChild(result, skipParentAssign = false) {
-        if(!ResultBase.isResult(result)) {
-            console.error(`set child: ${result} isent a Result class`);
-            return false;
-        }
+        if(!ResultBase.isResult(result)) throw new TypeError(`set child: ${result} isent a Result class`);
+
         this.#child = result;
         if(!skipParentAssign) result.setParent(this, true);
         return result;
@@ -226,10 +214,8 @@ class ResultBase {
      * @return { ResultBase }
      */
     setParent(result, skipChildAssign = false) {
-        if(!ResultBase.isResult(result)) {
-            console.error(`set child: ${result} isent a Result class`);
-            return false;
-        }
+        if(!ResultBase.isResult(result)) throw new TypeError(`set parent: ${result} isent a Result class`);
+        
         this.#parent = result;
         if(!skipChildAssign) result.setChild(this, true);
         return result;
@@ -306,13 +292,13 @@ class ResultBase {
          */
         let currentResult;
         if(mode === 0) {
-            if(!firstParent) return false;
+            if(!firstParent) return null;
             currentResult = firstParent;
         } else if(mode === 1) {
-            if(!lastChild) return false;
+            if(!lastChild) return null;
             currentResult = lastChild;
         } else {
-            return false;
+            return null;
         }
         
         let allResults = [];
@@ -397,8 +383,6 @@ class ResultBase {
      * @return { Boolean }
      */
     printMore(mode = 0, numToProgress = -1, collapseMultiResults = false) {
-        let printString = `\nName: ${this.name}, Type: ${this.type}`;
-
         // 0 = Progress from current to last child
         // 1 = Progress from current to first parent
         // 2 = Progress from first parent to last child
