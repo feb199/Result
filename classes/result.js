@@ -4,7 +4,7 @@
 // const Enum = require("./enum.js");
 const EventEmitter = require("events");
 const { checkMultiResults, printMultiArray } = require("../utils/resultUtils.js");
-const ResultBase = require("./resultBase.js");
+const { ResultBase } = require("./resultBase.js");
 const logLevelsEnum = ResultBase.logLevelsEnum;
 //#endregion
 
@@ -306,4 +306,4 @@ class Results extends ResultBase {
     }
 }
 
-module.exports = { Result, Results, ResultBase };
+module.exports = { Result, Results, ResultBase, logLevelsEnum };

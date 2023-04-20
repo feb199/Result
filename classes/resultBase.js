@@ -484,4 +484,4 @@ class ResultBase {
     get belowCurrentLogLevel() { return this.type.value <= ResultBase.currentLogLevel.value }
 }
 
-module.exports = ResultBase;
+module.exports = { ResultBase };
