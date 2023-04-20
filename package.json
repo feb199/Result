@@ -4,7 +4,8 @@
   "description": "Used to store log results of functions/methods and also to executes actions depending on result of functions/methods.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node .",
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
