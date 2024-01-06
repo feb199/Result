@@ -306,7 +306,7 @@ Type `String`
 
 Value of `this`<br>
 `.value` (Variable)<br>
-Type `Any?`
+Type `any?`
 </details>
 
 <details><summary>Class Results extends ResultBase</summary>

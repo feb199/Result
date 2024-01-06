@@ -72,12 +72,12 @@ class ResultBase {
 
     /** 
     * parent - The parent of the Result.
-    * @type { Result|Results }
+    * @type { ResultBase? }
     */
     #parent;
     /** 
     * child - The child of the Result.
-    * @type { Result|Results }
+    * @type { ResultBase? }
     */
     #child;
     /** 
@@ -93,7 +93,9 @@ class ResultBase {
     * @param { Number } action - The action to take.
     */
     constructor(name, type, code, action) {
+        // @ts-ignore
         let isNameString = (typeof name === "string" || name instanceof String) && name.length > 0 && (name != "" && name != " ");
+        // @ts-ignore
         let isNameNumber = (typeof name === "number" || name instanceof Number);
         let isNameValid = isNameString || isNameNumber;
         if(!isNameValid) throw new TypeError(`Name parameter is missing or invalid: ${name}`);
@@ -125,67 +127,57 @@ class ResultBase {
      * localEventHandler - Get the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
      * @return { EventEmitter? }
      */
+    // @ts-ignore
     get localEventHandler() { return this.#localEventHandler; }
     /**
      * localEventHandler - Set the eventEmmitter that handles events. (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
-     * @param { Result } EventHandler
+     * @param { EventEmitter } EventHandler
      * @return { Boolean }
      */
     set localEventHandler(EventHandler) {
         let isEventHandlerValid = (EventHandler instanceof EventEmitter);
-        if(isEventHandlerValid) {
-            this.#localEventHandler = EventHandler;
-            return true;
-        } else {
-            this.#localEventHandler = null;
-            return false;
-        }
+        if(isEventHandlerValid) { this.#localEventHandler = EventHandler;
+        } else this.#localEventHandler = null;
     }
 
     /**
      * globalEventHandler - Get the eventEmmitter that handles events. (Emits: print(String), clear()).
      * @return { EventEmitter? }
      */
+    // @ts-ignore
     static get globalEventHandler() { return ResultBase.#globalEventHandler; }
     /**
      * globalEventHandler - Set the eventEmmitter that handles events. (Emits: print(String), clear()).
-     * @param { Result } EventHandler
+     * @param { EventEmitter } EventHandler
      * @return { Boolean }
      */
     static set globalEventHandler(EventHandler) {
         let isEventHandlerValid = (EventHandler instanceof EventEmitter);
-        if(isEventHandlerValid) {
-            ResultBase.#globalEventHandler = EventHandler;
-            return true;
-        } else {
-            ResultBase.#globalEventHandler = null;
-            return false;
-        }
+        if(isEventHandlerValid) { ResultBase.#globalEventHandler = EventHandler;
+        } else ResultBase.#globalEventHandler = null;
     }
 
     /**
      * Checks if provided result in an instance of ResultBase, dosent check if(type <= currentLogLevel)
-     * @param { Result } result
+     * @param { ResultBase } result
      * @return { Boolean }
      */
     static isResult(result) { return result instanceof ResultBase; }
 
     /**
      * Gets child of `this`, dosent check if(type <= currentLogLevel)
-     * @return { ResultBase }
+     * @return { ResultBase? }
      */
     get child() { return this.#child; }
     /**
      * Sets child of `this` to `result`, dosent check if(type <= currentLogLevel)
      * @param { ResultBase } result
      * @param { Boolean } skipParentAssign
-     * @return { ResultBase }
+     * @return { ResultBase? }
      */
     setChild(result, skipParentAssign = false) {
-        if(!ResultBase.isResult(result)) {
-            console.error(`set child: ${result} isent a Result class`);
-            return false;
-        }
+        if(!ResultBase.isResult(result)) throw new TypeError(`set child: ${result} isent a Result class`);
+
         this.#child = result;
         if(!skipParentAssign) result.setParent(this, true);
         return result;
@@ -201,6 +193,7 @@ class ResultBase {
             return false;
         }
         if(childAllreadyCleared && this.#child.parent !== this) {
+            // @ts-ignore
             console.error(`clearChild: ${this.#child.parent.name} doesn't equal this: ${this.name}`);
             return false;
         }
@@ -211,7 +204,7 @@ class ResultBase {
 
     /**
      * Gets parent of `this`, dosent check if(type <= currentLogLevel)
-     * @return { ResultBase }
+     * @return { ResultBase? }
      */
     get parent() { return this.#parent; }
     /**
@@ -221,10 +214,8 @@ class ResultBase {
      * @return { ResultBase }
      */
     setParent(result, skipChildAssign = false) {
-        if(!ResultBase.isResult(result)) {
-            console.error(`set child: ${result} isent a Result class`);
-            return false;
-        }
+        if(!ResultBase.isResult(result)) throw new TypeError(`set parent: ${result} isent a Result class`);
+        
         this.#parent = result;
         if(!skipChildAssign) result.setChild(this, true);
         return result;
@@ -240,6 +231,7 @@ class ResultBase {
             return false;
         }
         if(parentAllreadyCleared && this.#parent.child !== this) {
+            // @ts-ignore
             console.error(`this.parent.child: ${this.#parent.child.name} doesn't equal this: ${this.name}`);
             return false;
         }
@@ -253,6 +245,9 @@ class ResultBase {
      * @return { ResultBase }
      */
     get firstParent() {
+        /**
+         * @type { ResultBase }
+         */
         let foundParent = this;
         if(this.parent) {
             while(foundParent.parent) {
@@ -266,6 +261,9 @@ class ResultBase {
      * @return { ResultBase }
      */
     get lastChild() {
+        /**
+         * @type { ResultBase }
+         */
         let foundChild = this;
         if(this.child) {
             while(foundChild.child) {
@@ -281,7 +279,7 @@ class ResultBase {
      * @param { Number? } toIndex
      * @param { Boolean? } collapseMultiResults
      * @param { Boolean? } flattenMultiResults
-     * @return { ResultBase[] }
+     * @return { ResultBase[]? }
      */
     getAll(mode = 0, toIndex = -1, collapseMultiResults = false, flattenMultiResults = false) {
         // 0 = Get all from first parent to last child
@@ -289,23 +287,31 @@ class ResultBase {
         let firstParent = this.firstParent;
         let lastChild = this.lastChild;
 
+        /**
+         * @type { ResultBase? }
+         */
         let currentResult;
         if(mode === 0) {
-            if(!firstParent) return false;
+            if(!firstParent) return null;
             currentResult = firstParent;
         } else if(mode === 1) {
-            if(!lastChild) return false;
+            if(!lastChild) return null;
             currentResult = lastChild;
         } else {
-            return false;
+            return null;
         }
         
         let allResults = [];
 
         let i = -1;
+        /**
+         * @type { Function }
+         */
         let condition = function() { return (currentResult) } // Default to getting all results
+        // @ts-ignore
         if(toIndex > 0) { // Default to getting {toIndex} amount of results
             condition = function() {
+                // @ts-ignore
                 let resolve = (currentResult && i < toIndex);
                 if(currentResult && currentResult.belowCurrentLogLevel) i++;
                 return resolve;
@@ -313,6 +319,7 @@ class ResultBase {
         }
 
         while(condition()) {
+            // @ts-ignore
             const shouldGetMultiResults = !collapseMultiResults && currentResult.results && Object.keys(currentResult.results).length > 0;
 
             let tempObject = [];
@@ -327,12 +334,15 @@ class ResultBase {
                     allResults.push(tempObject);
                 }
             } else {
+                // @ts-ignore
                 if(currentResult.belowCurrentLogLevel) allResults.push(currentResult);
             }
 
             if(mode === 0) {
+                // @ts-ignore
                 currentResult = currentResult.child;
             } else if(mode === 1) {
+                // @ts-ignore
                 currentResult = currentResult.parent;
             }
 
@@ -373,8 +383,6 @@ class ResultBase {
      * @return { Boolean }
      */
     printMore(mode = 0, numToProgress = -1, collapseMultiResults = false) {
-        let printString = `\nName: ${this.name}, Type: ${this.type}`;
-
         // 0 = Progress from current to last child
         // 1 = Progress from current to first parent
         // 2 = Progress from first parent to last child
@@ -382,7 +390,9 @@ class ResultBase {
         let firstParent = this.firstParent;
         let lastChild = this.lastChild;
 
-        
+        /**
+         * @type { ResultBase? }
+         */
         let currentResult = this;     
         if(mode === 2) {
             if(!firstParent) return false;
@@ -399,9 +409,14 @@ class ResultBase {
         
         let allResults = [];
         let i = -1;
+        /**
+         * @type { Function }
+         */
         let condition = function() { return (currentResult) } // Default to print as many results
+        // @ts-ignore
         if(numToProgress >= 0) { // Switch to printing as {numToProgress}
             condition = function() {
+                // @ts-ignore
                 let resolve = currentResult && (i < numToProgress)
                 if(currentResult) i++;
                 return resolve;
@@ -409,6 +424,7 @@ class ResultBase {
         }
         
         while(condition()) {
+            // @ts-ignore
             const shouldGetMultiResults = currentResult.results && Object.keys(currentResult.results).length > 0;
             // const shouldGetMultiResults = false;
 
@@ -423,6 +439,7 @@ class ResultBase {
                 }
                 allResults.push(...tempArray);
             } else {
+                // @ts-ignore
                 if(currentResult.belowCurrentLogLevel) {
                     allResults.push(currentResult);
                     if(logEverything) {
@@ -434,8 +451,10 @@ class ResultBase {
             }
 
             if(mode === 1 || mode === 3) {
+                // @ts-ignore
                 currentResult = currentResult.parent;
             } else {
+                // @ts-ignore
                 currentResult = currentResult.child;
             }
 
@@ -463,6 +482,7 @@ class ResultBase {
                 console.log(printResults);
                 console.log("\n\n")
             }
+            // @ts-ignore
             if(numToProgress >= 0) {
                 printResult = printMultiArray(ResultBase, printResults, printResult, numToProgress);
             } else {
@@ -484,4 +504,4 @@ class ResultBase {
     get belowCurrentLogLevel() { return this.type.value <= ResultBase.currentLogLevel.value }
 }
 
-module.exports = ResultBase;
+module.exports = { ResultBase };

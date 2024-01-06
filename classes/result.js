@@ -4,7 +4,7 @@
 // const Enum = require("./enum.js");
 const EventEmitter = require("events");
 const { checkMultiResults, printMultiArray } = require("../utils/resultUtils.js");
-const ResultBase = require("./resultBase.js");
+const { ResultBase } = require("./resultBase.js");
 const logLevelsEnum = ResultBase.logLevelsEnum;
 //#endregion
 
@@ -22,7 +22,7 @@ const logEverything = false;
  * @property { Number } code - The HTTP Status Code.
  * @property { Number } action - The action to take.
  * @property { String } message - The name of the Result.
- * @property { Any? } value - The passed through value of the Result.
+ * @property { any? } value - The passed through value of the Result.
  * 
  * @property { EventEmitter? } localEventHandler - The event to emit calls for "print". (Emits: print(String), clear()), localEventHandler overrides static globalEventHandler.
  * 
@@ -41,17 +41,22 @@ class Result extends ResultBase {
     message;
     /** 
     * value - The passed through value of the Result.
-    * @type { Any? }
+    * @type { any? }
     */
     value;
 
-    /**
+    /** 
+     * @param { String } name - The name of the Result.
+     * @param { EnumValue } type - The type of the Result.
+     * @param { Number } code - The HTTP Status Code.
+     * @param { Number } action - The action to take.
      * @param { String } message - The name of the Result.
-     * @param { Any? } value - The passed through value of the Result.
+     * @param { any? } value - The passed through value of the Result.
      */
-    constructor (name, type, code, action, message, value) {
+    constructor (name, type, code, action, message, value = undefined) {
         super(name, type, code, action);
 
+        // @ts-ignore
         let isMessageValid = (typeof message === "string" || message instanceof String);
         if(!isMessageValid) throw new TypeError(`One or more parameters are missing or invalid:\nCode: ${code}, Action: ${action},\nMessage: ${message}`);
 
@@ -66,10 +71,11 @@ class Result extends ResultBase {
     static get globalEventHandler() { return ResultBase.globalEventHandler; }
     /**
      * globalEventHandler - The event to emit calls for "print". (Emits: print(String), clear()).
-     * @param { Result } EventHandler
+     * @param { EventEmitter? } EventHandler
      * @return { Boolean }
      */
-    static set globalEventHandler(EventHandler) { return ResultBase.globalEventHandler = EventHandler; }
+    // @ts-ignore
+    static set globalEventHandler(EventHandler) { ResultBase.globalEventHandler = EventHandler; }
 
     print() {
         super.print(true);
@@ -171,13 +177,14 @@ class Results extends ResultBase {
      * globalEventHandler - The event to emit calls for "print". (Emits: print(String), clear()).
      * @return { EventEmitter? }
      */
+    // @ts-ignore
     static get globalEventHandler() { return ResultBase.globalEventHandler; }
     /**
      * globalEventHandler - The event to emit calls for "print". (Emits: print(String), clear()).
-     * @param { Result } EventHandler
+     * @param { EventEmitter } EventHandler
      * @return { Boolean }
      */
-    static set globalEventHandler(EventHandler) { return ResultBase.globalEventHandler = EventHandler; }
+    static set globalEventHandler(EventHandler) { ResultBase.globalEventHandler = EventHandler; }
 
     /**
      * results - Gets the events of `this`.
@@ -203,6 +210,9 @@ class Results extends ResultBase {
         if(!skipResults && this.results.length > 0) {
             let printResult = null;
             for (let i = 0; i < this.results.length; i++) {
+                /**
+                 * @type { ResultBase? }
+                 */
                 let resultcheck = this.results[i];
                 let firstResult = resultcheck;
                 
@@ -210,6 +220,7 @@ class Results extends ResultBase {
                 let allResults = [];
 
                 while(resultcheck) {                    
+                    // @ts-ignore
                     const shouldGetMultiResults = resultcheck.results && Object.keys(resultcheck.results).length > 0;
                     
                     let tempArray = [];
@@ -306,4 +317,4 @@ class Results extends ResultBase {
     }
 }
 
-module.exports = { Result, Results, ResultBase };
+module.exports = { Result, Results, ResultBase, logLevelsEnum };
